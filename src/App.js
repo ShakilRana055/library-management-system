@@ -2,12 +2,11 @@ import React from 'react';
 import './App.css';
 
 import LoginPage from "./component/login/loginPage";
-import Layout from "./component/layout/menu.jsx";
-
+import configureStore from "./store/configureStore";
 function App() {
+  const store = configureStore();
   return (
-    <LoginPage></LoginPage>
-    // <Layout></Layout>
+    <LoginPage store = {store}></LoginPage>
   );
 }
 

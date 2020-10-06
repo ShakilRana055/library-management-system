@@ -10,15 +10,15 @@ class Student extends Component {
                 <form>
                     <div className= "row">
                         <div className="form-row col-md-4">
-                            <label className="col-sm-2 col-form-label"  for="name">Name</label>
+                            <label className="col-sm-2 col-form-label">Name</label>
                             <input type="text" className="form-control col-sm-10" name="name" id="name"></input>
                         </div>
                         <div className="form-row col-md-4">
-                            <label className="col-sm-3 col-form-label"  for="name">Student Id</label>
+                            <label className="col-sm-3 col-form-label">Student Id</label>
                             <input type="text" className="form-control col-sm-9" name="name" id="name"></input>
                         </div>
                         <div className="form-row col-md-4">
-                            <label className="col-sm-3 col-form-label"  for="name">Dept.</label>
+                            <label className="col-sm-3 col-form-label">Dept.</label>
                             <select className="form-control col-sm-9" name="name" id="name">
                                 <option value = "">CSE</option>
                                 <option value = "">EEE</option>
@@ -32,15 +32,15 @@ class Student extends Component {
                     </div>
                     <div className = "row" style = {{ marginTop:10}}>
                         <div className="form-row col-md-4">
-                            <label className="col-sm-2 col-form-label"  for="name">Email</label>
+                            <label className="col-sm-2 col-form-label"  >Email</label>
                             <input type="text" className="form-control col-sm-10" name="name" id="name"></input>
                         </div>
                         <div className="form-row col-md-4">
-                            <label className="col-sm-3 col-form-label"  for="name">Image</label>
+                            <label className="col-sm-3 col-form-label"  >Image</label>
                             <input type="file" style = {{border:0}} className="form-control col-sm-9" name="name" id="name"></input>
                         </div>
                         <div className="form-row col-md-4">
-                            <label className="col-sm-3 col-form-label"  for="name">Date of Birth</label>
+                            <label className="col-sm-3 col-form-label" >Date of Birth</label>
                             <input type="date" className="form-control col-sm-9" name="name" id="name"></input>
                         </div>
                     </div>

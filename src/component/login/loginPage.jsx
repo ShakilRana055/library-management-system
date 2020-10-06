@@ -14,7 +14,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Layout from "../layout/menu";
 
-import { BrowserRouter as Router, Route, Redirect, Switch } from "react-router-dom";
+import * as apiConstant from "../../apiConstant/apiConstant";
 
 function Copyright() {
   return (
@@ -67,6 +67,20 @@ export default function SignInSide(props) {
 
   const SubmitHandler = event =>{
     event.preventDefault();
+    let data = {
+      email: email,
+      password:password,
+    }
+    props.store.dispatch({
+      type : apiConstant.attemptToLog,
+      payload: {
+        url: "",
+        data: data,
+        onSuccess: "",
+        onError: "",
+        method: "GET"
+      }
+    });
     setEmail("");
     setPassword("");
     hasLogged(true);
@@ -74,13 +88,8 @@ export default function SignInSide(props) {
   
   if(isLogged === true){
       return(
-          <Layout></Layout>
-        // <Router>
-        //     <Route exact component = {Layout}>
-        //         <Redirect  to = "/Home" ></Redirect>
-        //     </Route>
-        // </Router>
-      )
+          <Layout store = {props.store}></Layout>
+      );
   }
   else{
     return (

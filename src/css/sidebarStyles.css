@@ -8,6 +8,10 @@
     overflow: auto;
   }
   
+  .contentOverRide{
+    height: auto !important;
+  }
+
   /* Sidebar links */
   .sidebar a {
     display: block;
@@ -17,13 +21,13 @@
   }
   
   /* Active/current link */
-  .sidebar a.active {
+  .sidebar a:active {
     background-color: #4CAF50;
     color: white;
   }
   
   /* Links on mouse-over */
-  .sidebar a:hover:not(.active) {
+  .sidebar a:hover:not(:active) {
     background-color: #555;
     color: white;
   }
