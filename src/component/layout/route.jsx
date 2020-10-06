@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react';
 import { Route } from "react-router-dom";
-
+import Student from '../student/student';
 
 class route extends Component {
     constructor(props) {
@@ -26,8 +26,3 @@ function Home(){
     )
   }
   
-  function Student(){
-    return(
-      <div>This is Student page</div>
-    )
-  }
