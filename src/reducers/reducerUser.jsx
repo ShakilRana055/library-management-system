@@ -6,6 +6,7 @@ const slice = createSlice({
     initialState: {
         list: [],
         userInformation:'',
+        hasLogged: false,
     },
     reducers: {
         LoadUser: (state, action) =>{
@@ -23,6 +24,7 @@ const slice = createSlice({
         },
         GotUserInformation:(state, action) =>{
             state.userInformation = action.payload;
+            state.hasLogged = true;
         },
     }
 });

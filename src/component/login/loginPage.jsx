@@ -67,18 +67,18 @@ export default function SignInSide(props) {
 
   const SubmitHandler = event =>{
     event.preventDefault();
-    let data = {
+    let thisData = {
       email: email,
       password:password,
     }
     props.store.dispatch({
       type : apiConstant.attemptToLog,
       payload: {
-        url: "",
-        data: data,
-        onSuccess: "",
-        onError: "",
-        method: "GET"
+        url: "user/finduser",
+        method: apiConstant.POST,
+        data: thisData,
+        onSuccess: "LoginSuccess",
+        onError: "LoginFailed",
       }
     });
     setEmail("");

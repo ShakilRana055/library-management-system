@@ -1,12 +1,25 @@
+import axios from 'axios';
 import * as apiConstant from "../apiConstant/apiConstant";
 import * as actionCreator from "../reducers/reducerUser";
 
-const apiUser = ({ dispatch }) => next => action =>{
-    const { url, data, onSuccess, onError } = action.payload;
+const apiUser = ({ dispatch }) => next => async action =>{
+    const { url, data, onSuccess, onError, method } = action.payload;
 
     if(action.type ===  apiConstant.attemptToLog){
         next(action);
-        dispatch(actionCreator.GotUserInformation(data));
+        try {
+            let response = await axios.request({
+                baseURL:apiConstant.baseUrl,
+                url,
+                method,
+                data,
+                onSuccess,
+                onError,
+            });
+            dispatch(actionCreator.GotUserInformation(response.data));
+        } catch (error) {
+            console.log(error);
+        }
     }
     else{
         return next(action);

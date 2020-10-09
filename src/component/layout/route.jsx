@@ -9,7 +9,6 @@ class route extends Component {
         super(props);
     }
     render() {
-        console.log(this.props);
         return (
             <>
                 <Route exact path = "/" component = {Home}></Route>
