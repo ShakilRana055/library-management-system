@@ -24,7 +24,7 @@ export const shelfApiDeleted = "shelfApiDeleted";
 //#region Student Registration
 export const studentApiCalled = "studentApiCalled";
 export const studentApiSuccess = "studentApiSuccess";
-export const studentApiFailed = "shelfApiFailed";
+export const studentApiFailed = "studentApiFailed";
 export const studentApiCreated = "studentApiCreated";
 export const studentApiUpdated = "studentApiUpdated";
 export const studentApiDeleted = "studentApiDeleted";

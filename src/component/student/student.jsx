@@ -1,6 +1,8 @@
 
 import React, { Component } from 'react';
 import * as apiConstant from '../../apiConstant/apiConstant';
+import {connect} from "react-redux";
+
 class Student extends Component {
     constructor(props)
     {
@@ -15,6 +17,18 @@ class Student extends Component {
         };
     }
 
+    componentDidMount(){
+        this.props.store.dispatch({
+            type: apiConstant.studentApiCalled,
+            payload:{
+                url: "/student",
+                method:apiConstant.GET,
+                onSuccess: apiConstant.studentApiSuccess,
+                onError:apiConstant.studentApiFailed,
+            }
+        });
+    }
+    
     NameHandler = event =>{
         this.setState({
            name :event.target.value,
@@ -78,6 +92,7 @@ class Student extends Component {
                 onError: apiConstant.studentApiFailed,
             }
         });
+        this.ClearField();
     }
     ResetHandler = event =>{
         event.preventDefault();
@@ -131,9 +146,41 @@ class Student extends Component {
                         <button type = "button" onClick = {this.ResetHandler} className = "btn btn-danger btn-sm">Reset</button>
                     </div>
                 </form>
+                <div className = "row">
+                    <table className = "table table-hover table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Student Id</th>
+                                <th>Email</th>
+                                <th>Department</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                this.props.studentList.map((value, index) =>
+                                    <tr key = {value.id}>
+                                        <td>{value.name}</td>
+                                        <td>{value.studentId}</td>
+                                        <td>{value.email}</td>
+                                        <td>{value.department}</td>
+                                        <td></td>
+                                    </tr>
+                                )
+                            }
+                        </tbody>
+                    </table>
+                </div>
             </>
         );
     }
 }
 
-export default Student;
+const mapStateToProps = state =>{
+    return {
+        studentList : state.entities.student.list,
+    }
+}
+
+export default connect(mapStateToProps) (Student);

@@ -12,7 +12,7 @@ class route extends Component {
         return (
             <>
                 <Route exact path = "/" component = {Home}></Route>
-                <Route exact path = "/student" component = {Student}></Route>
+                <Route exact path = "/student" component = {() => <Student store = {this.props.store}></Student>}></Route>
                 <Route exact path = "/shelfCreate" component = {() => <ShelfCreate store = {this.props.store}></ShelfCreate>}></Route>
             </>
         );
