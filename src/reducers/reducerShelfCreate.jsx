@@ -1,3 +1,4 @@
+
 import { createSlice } from "@reduxjs/toolkit";
 
 const slice = createSlice({
@@ -13,7 +14,8 @@ const slice = createSlice({
             state.list.push(action.payload);
         },
         UpdatedShelf: (state, action) =>{
-
+            let index = state.list.findIndex( item => item.id === action.payload.id);
+            state.list[index] = action.payload;
         },
         DeletedShelf: (state, action) =>{
             let index = state.list.findIndex( item => item.id === action.payload.id);

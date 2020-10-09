@@ -29,3 +29,12 @@ export const studentApiCreated = "studentApiCreated";
 export const studentApiUpdated = "studentApiUpdated";
 export const studentApiDeleted = "studentApiDeleted";
 //#endregion
+
+//#region Book
+export const bookApiCalled = "bookApiCalled";
+export const bookApiSuccess = "bookApiSuccess";
+export const bookApiFailed = "bookApiFailed";
+export const bookApiCreated = "bookApiCreated";
+export const bookApiUpdated = "bookApiUpdated";
+export const bookApiDeleted = "bookApiDeleted";
+//#endregion

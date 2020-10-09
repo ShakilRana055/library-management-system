@@ -4,6 +4,7 @@ import reducer from "../reducerCombine/reducer";
 import apiUser from "../middleware/apiUser";
 import apiShelfCreate from '../middleware/apiShelfCreate';
 import apiStudent from "../middleware/apiStudent";
+import apiBook from "../middleware/apiBook";
 
 
 
@@ -16,6 +17,7 @@ export default function()
             apiUser,
             apiShelfCreate,
             apiStudent,
+            apiBook,
         ],
     });
 }

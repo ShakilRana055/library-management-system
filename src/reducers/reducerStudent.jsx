@@ -14,7 +14,8 @@ const slice = createSlice({
             state.list.push(action.payload);
         },
         UpdatedStudent: (state, action) =>{
-
+            let index = state.list.findIndex(item => item.id === action.payload.id);
+            state.list[index] = action.payload;
         },
         DeletedStudent: (state, action) =>{
             let index = state.list.findIndex( item => item.id === action.payload.id);

@@ -7,13 +7,24 @@ const apiShelfCreate = ({ dispatch }) => next => async action =>{
 
     if(action.type ===  apiConstant.shelfApiCalled){
         next(action);
-        dispatch(actionCreator.LoadShelf(data));
+        try {
+            let response = await axios.request({
+                baseURL : apiConstant.baseUrl,
+                url,
+                onSuccess,
+                onError,
+            });
+            dispatch(actionCreator.LoadShelf(response.data));
+        } catch (error) {
+            
+        }
     }
     else if(action.type === apiConstant.shelfApiCreated){
         next(action);
         try {
             let response = await axios.request({
                 baseURL: apiConstant.baseUrl,
+                url,
                 method,
                 data,
                 onSuccess,
@@ -23,7 +34,37 @@ const apiShelfCreate = ({ dispatch }) => next => async action =>{
         } catch (error) {
             
         }
-        dispatch(actionCreator.CreatedShelf(data));
+    }
+    else if(action.type === apiConstant.shelfApiUpdated){
+        next(action);
+        try {
+            let response = await axios.request({
+                baseURL: apiConstant.baseUrl,
+                url,
+                method,
+                data,
+                onSuccess,
+                onError,
+            })
+            dispatch(actionCreator.UpdatedShelf(response.data));
+        } catch (error) {
+            
+        }
+    }
+    else if(action.type === apiConstant.shelfApiDeleted){
+        next(action);
+        try {
+            let response = await axios.request({
+                baseURL: apiConstant.baseUrl,
+                url,
+                method,
+                onSuccess,
+                onError,
+            })
+            dispatch(actionCreator.DeletedShelf(response.data));
+        } catch (error) {
+            
+        }
     }
     else{
         return next(action);

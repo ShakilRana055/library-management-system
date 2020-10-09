@@ -1,11 +1,62 @@
+
 import * as apiConstant from "../apiConstant/apiConstant";
-import * as actionCreator from "../reducers/reducerStudent";
-import axios from "axios";
+import axios from 'axios';
+import * as actionCreator from "../reducers/reducerBook";
 
-const apiStudent = ({ dispatch }) => next => async action =>{
-    const { url, data, onSuccess, onError, method } = action.payload;
+const apiBook = ({dispatch}) => next => async action =>{
+    const { url, data, method, onSuccess, onError } = action.payload;
 
-    if(action.type ===  apiConstant.studentApiCalled){
+    if( action.type === apiConstant.bookApiCalled)
+    {
+        next(action);
+        try {
+            let response = await axios.request({
+                baseURL: apiConstant.baseUrl,
+                url,
+                onSuccess,
+                onError,
+            });
+            dispatch( actionCreator.LoadBook(response.data));
+        } catch (error) {
+            
+        }
+    }
+    else if( action.type === apiConstant.bookApiCreated)
+    {
+        next(action);
+        try {
+            let response = await axios.request({
+                baseURL: apiConstant.baseUrl,
+                url,
+                data,
+                method,
+                onSuccess,
+                onError,
+            });
+            dispatch( actionCreator.CreatedBook(response.data));
+        } catch (error) {
+            
+        }
+    }
+    else if( action.type === apiConstant.bookApiUpdated)
+    {
+        next(action);
+        try {
+            let response = await axios.request({
+                baseURL: apiConstant.baseUrl,
+                url,
+                data,
+                method,
+                onSuccess,
+                onError,
+            });
+            dispatch( actionCreator.UpdatedBook(response.data));
+        } catch (error) {
+            
+        }
+    }
+    else if( action.type === apiConstant.bookApiDeleted)
+    {
         next(action);
         try {
             let response = await axios.request({
@@ -15,55 +66,7 @@ const apiStudent = ({ dispatch }) => next => async action =>{
                 onSuccess,
                 onError,
             });
-            dispatch(actionCreator.LoadStudent(response.data));
-        } catch (error) {
-            
-        }
-    }
-    else if(action.type === apiConstant.studentApiCreated){
-        next(action);
-        try {
-            let response = await axios.request({
-                baseURL: apiConstant.baseUrl,
-                url,
-                method,
-                data,
-                onSuccess,
-                onError,
-            })
-            dispatch(actionCreator.CreatedStudent(response.data));
-        } catch (error) {
-            
-        }
-    }
-    else if(action.type === apiConstant.studentApiUpdated){
-        next(action);
-        try {
-            let response = await axios.request({
-                baseURL: apiConstant.baseUrl,
-                url,
-                method,
-                data,
-                onSuccess,
-                onError,
-            });
-            dispatch(actionCreator.UpdatedStudent(response.data));
-        } catch (error) {
-            
-        }
-    }
-    else if(action.type === apiConstant.studentApiDeleted){
-        next(action);
-        try {
-            let response = await axios.request({
-                baseURL: apiConstant.baseUrl,
-                url,
-                method,
-                data,
-                onSuccess,
-                onError,
-            });
-            dispatch(actionCreator.DeletedStudent(response.data));
+            dispatch( actionCreator.DeletedBook(response.data));
         } catch (error) {
             
         }
@@ -73,4 +76,4 @@ const apiStudent = ({ dispatch }) => next => async action =>{
     }
 }
 
-export default apiStudent;
+export default apiBook;

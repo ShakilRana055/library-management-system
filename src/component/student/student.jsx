@@ -14,6 +14,8 @@ class Student extends Component {
             email:'',
             image:'',
             dateOfBirth:'',
+            btnName: 'Submit',
+            globalId: '',
         };
     }
 
@@ -68,20 +70,12 @@ class Student extends Component {
             email:'',
             image:'',
             dateOfBirth:'',
+            globalId: '',
+            btnName:"Submit",
         });
     }
 
-    SubmitHandler = event =>{
-        event.preventDefault();
-        let data = {
-            name:this.state.name,
-            studentId:this.state.studentId,
-            department: this.state.department,
-            email:this.state.email,
-            image:this.state.image,
-            dateOfBirth:this.state.dateOfBirth,
-        };
-
+    SaveStudent (data){
         this.props.store.dispatch({
             type: apiConstant.studentApiCreated,
             payload:{
@@ -92,14 +86,66 @@ class Student extends Component {
                 onError: apiConstant.studentApiFailed,
             }
         });
+    }
+    UpdateStudent(data){
+        this.props.store.dispatch({
+            type: apiConstant.studentApiUpdated,
+            payload: {
+                url: 'student/'+this.state.globalId,
+                method:apiConstant.PUT,
+                data,
+                onSuccess: apiConstant.studentApiSuccess,
+                onError: apiConstant.studentApiFailed,
+            }
+        })
+    }
+    SubmitHandler = event =>{
+        event.preventDefault();
+        let data = {
+            name:this.state.name,
+            studentId:this.state.studentId,
+            department: this.state.department,
+            email:this.state.email,
+            image:this.state.image,
+            dateOfBirth:this.state.dateOfBirth,
+        };
+        if( this.state.btnName === "Submit"){
+            this.SaveStudent(data);
+        }
+        else{
+            this.UpdateStudent(data);
+        }
         this.ClearField();
     }
     ResetHandler = event =>{
         event.preventDefault();
         this.ClearField();
     }
+    EditHandler = id =>{
+        let index = this.props.studentList.findIndex(item => item.id === id);
+        this.setState({
+            name: this.props.studentList[index].name,
+            studentId: this.props.studentList[index].studentId,
+            email: this.props.studentList[index].email,
+            department: this.props.studentList[index].department,
+            dateOfBirth : this.props.studentList[index].dateOfBirth,
+            btnName: 'Update',
+            globalId: id,
+        });
+    }
+    DeleteHandler = id =>{
+        this.props.store.dispatch({
+            type: apiConstant.studentApiDeleted,
+            payload: {
+                url: 'student/'+id,
+                method:apiConstant.DELETE,
+                onSuccess: apiConstant.studentApiSuccess,
+                onError: apiConstant.studentApiFailed,
+            }
+        })
+    }
     render() {
-        const {name, studentId, department, email, image, dateOfBirth} = this.state;
+        const {name, studentId, department, email, image, dateOfBirth, btnName} = this.state;
         return (
             <>
                 <h3>Student Registration</h3>
@@ -142,7 +188,7 @@ class Student extends Component {
                         </div>
                     </div>
                     <div className="form-row" style = {{marginTop:10}}>
-                        <button type = "button" onClick = {this.SubmitHandler} className = "btn btn-primary btn-sm">Submit</button>
+        <button type = "button" onClick = {this.SubmitHandler} className = "btn btn-primary btn-sm">{btnName}</button>
                         <button type = "button" onClick = {this.ResetHandler} className = "btn btn-danger btn-sm">Reset</button>
                     </div>
                 </form>
@@ -165,7 +211,10 @@ class Student extends Component {
                                         <td>{value.studentId}</td>
                                         <td>{value.email}</td>
                                         <td>{value.department}</td>
-                                        <td></td>
+                                        <td>
+                                            <button onClick = {() =>this.EditHandler(value.id)} className = "btn btn-success btn-sm">Edit</button>
+                                            <button onClick = {() =>this.DeleteHandler(value.id)} className = "btn btn-danger btn-sm">Delete</button>
+                                        </td>
                                     </tr>
                                 )
                             }
