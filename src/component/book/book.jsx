@@ -64,19 +64,23 @@ class Book extends Component {
         this.props.store.dispatch({
             type: apiConstant.bookApiCreated,
             payload: {
-                url: "book",
+                url: '/book',
                 method: apiConstant.POST,
                 data: data,
                 onSuccess: apiConstant.bookApiSuccess,
                 onError: apiConstant.bookApiFailed,
             }
-        })
+        });
+
+        
     }
     UpdateBook(data){
+        let newData = String(data.numberOfCopies);
+        data.numberOfCopies = newData;
         this.props.store.dispatch({
             type: apiConstant.bookApiUpdated,
             payload: {
-                url: "book/"+this.state.globalId,
+                url: 'book/'+this.state.globalId,
                 method: apiConstant.PUT,
                 data: data,
                 onSuccess: apiConstant.bookApiSuccess,
@@ -139,7 +143,7 @@ class Book extends Component {
         this.props.store.dispatch({
             type: apiConstant.bookApiDeleted,
             payload: {
-                url: "book/"+id,
+                url: 'book/' + id,
                 method: apiConstant.DELETE,
                 onSuccess: apiConstant.bookApiSuccess,
                 onError: apiConstant.bookApiFailed,
@@ -149,6 +153,20 @@ class Book extends Component {
 
     //#endregion
     
+    //#region Component
+        componentDidMount(){
+            this.props.store.dispatch({
+                type: apiConstant.bookApiCalled,
+                payload: {
+                    url: "/book",
+                    onSuccess: apiConstant.bookApiSuccess,
+                    onError: apiConstant.bookApiFailed,
+                }
+            }) 
+        }
+
+    //#endregion
+
     render() {
         const { name, code,numberOfCopies,author,publication,description,btnName } = this.state;
         return (

@@ -14,11 +14,11 @@ const bookSlice = createSlice({
             state.list.push(action.payload);
         },
         UpdatedBook: (state, action) =>{
-            let index = state.list.findIndex(item => item === action.payload.id);
+            let index = state.list.findIndex(item => item.id === action.payload.id);
             state.list[index] = action.payload;
         },
         DeletedBook: (state, action) =>{
-            let index = state.list.findIndex(item => item === action.payload.id);
+            let index = state.list.findIndex(item => item.id === action.payload.id);
             state.list.splice(index, 1);
         },
     }

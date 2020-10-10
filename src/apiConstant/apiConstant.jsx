@@ -1,6 +1,6 @@
 
 //#region Base constant
-export const baseUrl = "https://localhost:5001/api/";
+export const baseUrl = "https://localhost:44303/api/";
 export const POST = "POST";
 export const GET = "GET";
 export const PUT = "PUT";

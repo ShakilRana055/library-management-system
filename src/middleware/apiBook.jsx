@@ -28,14 +28,14 @@ const apiBook = ({dispatch}) => next => async action =>{
             let response = await axios.request({
                 baseURL: apiConstant.baseUrl,
                 url,
-                data,
                 method,
+                data,
                 onSuccess,
                 onError,
             });
             dispatch( actionCreator.CreatedBook(response.data));
         } catch (error) {
-            
+            console.log(error);
         }
     }
     else if( action.type === apiConstant.bookApiUpdated)
@@ -58,6 +58,7 @@ const apiBook = ({dispatch}) => next => async action =>{
     else if( action.type === apiConstant.bookApiDeleted)
     {
         next(action);
+        console.log(action.payload);
         try {
             let response = await axios.request({
                 baseURL: apiConstant.baseUrl,
