@@ -54,6 +54,7 @@ class Layout extends Component {
                     <Link to = "/student">Student</Link>
                     <Link to = "/shelfCreate">Shelf Create</Link>
                     <Link to = "/book">Book</Link>
+                    <Link to = "/shelfSetUp">Shelf Setup</Link>
                 </div>
                 <div className="content contentOverRide">
                    <MainRouter store = {this.props.store}></MainRouter>

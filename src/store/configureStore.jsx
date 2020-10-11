@@ -5,8 +5,8 @@ import apiUser from "../middleware/apiUser";
 import apiShelfCreate from '../middleware/apiShelfCreate';
 import apiStudent from "../middleware/apiStudent";
 import apiBook from "../middleware/apiBook";
-
-
+import apiShelfSetup from "../middleware/apiShelfSetup";
+import apiBorrowBook from "../middleware/apiBorrowBook";
 
 export default function()
 {
@@ -18,6 +18,8 @@ export default function()
             apiShelfCreate,
             apiStudent,
             apiBook,
+            apiShelfSetup,
+            apiBorrowBook,
         ],
     });
 }
