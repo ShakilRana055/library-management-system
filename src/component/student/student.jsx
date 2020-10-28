@@ -155,6 +155,7 @@ class Student extends Component {
                         <div className="form-row col-md-4">
                             <label className="col-sm-2 col-form-label">Name</label>
                             <input type="text" value = {name} onChange = {this.NameHandler} className="form-control col-sm-10" name="name" id="name"></input>
+                            
                         </div>
                         <div className="form-row col-md-4">
                             <label className="col-sm-3 col-form-label">Student Id</label>

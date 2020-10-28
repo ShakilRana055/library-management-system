@@ -169,6 +169,7 @@ class Book extends Component {
 
     render() {
         const { name, code,numberOfCopies,author,publication,description,btnName } = this.state;
+        console.log(this.props);
         return (
             <>
                 <h3>Book Entry</h3>
@@ -248,6 +249,7 @@ class Book extends Component {
 }
 
 const mapStateToProps = state =>{
+    console.log(state);
     return {
         bookList: state.entities.book.list,
     }

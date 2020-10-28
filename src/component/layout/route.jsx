@@ -5,6 +5,7 @@ import Student from '../student/student';
 import ShelfCreate from "../shelf/shelfCreate";
 import Book from '../book/book';
 import ShelfSetUp from "../shelf/shelfSetup";
+import BorrowBook from "../borrowBook/borrowBook";
 
 class route extends Component {
     constructor(props){
@@ -18,6 +19,7 @@ class route extends Component {
                 <Route exact path = "/shelfCreate" component = {() => <ShelfCreate store = {this.props.store}></ShelfCreate>}></Route>
                 <Route exact path = "/book" component = {() => <Book store = {this.props.store}></Book>}></Route>
                 <Route exact path = "/shelfSetUp" component = {() => <ShelfSetUp store = {this.props.store}></ShelfSetUp>}></Route>
+                <Route exact path = "/borrowBook" component = {() => <BorrowBook store = {this.props.store}></BorrowBook>}></Route>
             </>
         );
     }
